@@ -1,12 +1,18 @@
-class Greeting {
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import { Server } from 'http';
+import * as cors from 'cors';
+import {UserController} from './controller/user';
 
-    constructor(name: any){
-        console.log("in constructor")
-    }
-    greet(): void {
-        console.log("Hello World!!!")
-    }
-}
+const app = express();
+const server = new Server(app);
+const port:number = 3000;
+server.listen(port);
+console.log(`server start on port ${port}`);
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
-var obj = new Greeting(3)
-obj.greet();
+app.use('/api/v1/user', UserController);
