@@ -7,5 +7,6 @@ var Greeting = /** @class */ (function () {
     };
     return Greeting;
 }());
-var obj = new Greeting("String na ja");
+var obj = new Greeting(3);
 obj.greet();
+//# sourceMappingURL=C:/Users/92717/trainAPI/app.js.map
