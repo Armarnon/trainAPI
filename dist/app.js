@@ -18,10 +18,13 @@ var port = server.listen(config.get("port"));
 var socket_IO = io(server);
 console.log("server start on port " + port.address()["port"]);
 socket_IO.on("connection", function (_socket) {
-    _socket.on('hello', function (payload) {
-        // _socket.emit('news', "");
+    _socket.on('newPic', function (payload) {
+        socket_IO.emit('updatePic', 1);
     });
-    _socket.emit("XXX", "payload data");
+    // _socket.emit("XXX", "payload data");
+    _socket.on('deletePic', function (payload) {
+        socket_IO.emit('updatePic', -1);
+    });
 });
 app.use(cors());
 app.use(bodyParser.json());

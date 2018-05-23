@@ -9,6 +9,7 @@ import { jwt } from './shared/auth';
 import { IssueController } from './controller/issue';
 import * as io from 'socket.io';
 import { PicController } from './controller/pic';
+import * as multer from 'multer';
 
 const app = express();
 const server = new Server(app);
@@ -20,10 +21,16 @@ const socket_IO = io(server);
 console.log(`server start on port ${port.address()["port"]}`);
 
 socket_IO.on("connection", (_socket) => {
-    _socket.on('hello', (payload) => {
-        // _socket.emit('news', "");
+
+    _socket.on('newPic', (payload) => {
+        socket_IO.emit('updatePic', 1);
     });
-    _socket.emit("XXX", "payload data");
+
+    // _socket.emit("XXX", "payload data");
+    _socket.on('deletePic', (payload) => {
+        socket_IO.emit('updatePic', -1);
+    });
+
 });
 
 app.use(cors());

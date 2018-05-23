@@ -11,5 +11,16 @@
     "TOKEN_KEY": "123456789",
     "JWT_SESSION": {
         "session": false
+    },
+    "UPLOAD_PATH": "uploads/",
+    "smtp":
+    {
+        "service" : "Gmail",
+        "auth":{
+            "user": "training.pnpsolution@gmail.com   ",
+            "pass": "training1234.pnp"
+        }
+        
     }
+
 }
